@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Balcan Building SRL - Construcții civile și industriale, Constanța.">
+    <title>Balcan Building SRL - Construcții Civile și Industriale Constanța</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+          --primary-color:#dc2626;
+          --primary-color-alt:#b91c1c;
+          --secondary-color:#000000;
+          --accent-color:#ef4444;
+          --text-color:#1f1f1f;
+          --text-color-light:#6b7280;
+          --white-color:#ffffff;
+          --body-color:#fafafa;
+          --container-color:#ffffff;
+          --border-color:#e5e5e5;
+          --shadow-color:rgba(0,0,0,0.1);
+          --shadow-color-alt:rgba(0,0,0,0.15);
+        }
+
+        *{
+          box-sizing:border-box;
+          margin:0;
+          padding:0;
+        }
+
+        html{
+          scroll-behavior:smooth;
+        }
+
+        body{
+          font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+          background:var(--body-color);
+          color:var(--text-color);
+          line-height:1.6;
+        }
+
+        .container{
+          max-width:1200px;
+          margin:0 auto;
+          padding:0 1rem;
+        }
+
+        .section{
+          padding:5rem 0 2rem;
+        }
+
+        .section__title{
+          font-size:2rem;
+          text-align:center;
+          margin-bottom:1rem;
+          position:relative;
+        }
+
+        .section__title::after{
+          content:"";
+          position:absolute;
+          left:50%;
+          bottom:-.5rem;
+          transform:translateX(-50%);
+          width:60px;
+          height:3px;
+          background:var(--primary-color);
+          border-radius:2px;
+        }
+
+        .section__subtitle{
+          text-align:center;
+          color:var(--text-color-light);
+          max-width:640px;
+          margin:0 auto 2rem;
+        }
+
+        .button{
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          padding:.875rem 2rem;
+          border-radius:.5rem;
+          font-weight:600;
+          border:2px solid transparent;
+          transition:all .3s;
+          cursor:pointer;
+          text-decoration:none;
+        }
+
+        .button--primary{
+          background:var(--primary-color);
+          color:#fff;
+        }
+
+        .button--primary:hover{
+          background:var(--primary-color-alt);
+          transform:translateY(-2px);
+          box-shadow:0 8px 24px rgba(220,38,38,.4);
+        }
+
+        .button--outline{
+          background:transparent;
+          color:var(--primary-color);
+          border-color:var(--primary-color);
+        }
+
+        .button--outline:hover{
+          background:var(--primary-color);
+          color:#fff;
+          transform:translateY(-2px);
+        }
+
+        .header{
+          position:fixed;
+          top:0;
+          left:0;
+          right:0;
+          height:80px;
+          background:var(--container-color);
+          box-shadow:0 4px 20px rgba(0,0,0,.1);
+          z-index:1000;
+          border-bottom:1px solid var(--border-color);
+        }
+
+        .nav{
+          height:80px;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          max-width:1200px;
+          margin:0 auto;
+          padding:0 2rem;
+        }
+
+        .nav__logo{
+          display:flex;
+          align-items:center;
+          gap:.75rem;
+          color:var(--primary-color);
+          font-weight:800;
+          font-size:1.5rem;
+          letter-spacing:-0.02em;
+        }
+
+        .nav__logo-img{
+          width:48px;
+          height:48px;
+          object-fit:contain;
+          border-radius:8px;
+        }
+
+        .nav__list{
+          display:flex;
+          gap:2.5rem;
+          align-items:center;
+          list-style:none;
+          margin:0;
+          padding:0;
+        }
+
+        .nav__item{
+          margin:0;
+        }
+
+        .nav__link{
+          position:relative;
+          color:var(--text-color);
+          font-weight:600;
+          font-size:1rem;
+          text-decoration:none;
+          padding:.5rem 0;
+          transition:all .3s ease;
+          letter-spacing:0.01em;
+        }
+
+        .nav__link:hover{
+          color:var(--primary-color);
+          transform:translateY(-1px);
+        }
+
+        .nav__link::after{
+          content:"";
+          position:absolute;
+          left:0;
+          bottom:0;
+          width:0;
+          height:3px;
+          background:linear-gradient(90deg,var(--primary-color),var(--accent-color));
+          transition:width .3s ease;
+          border-radius:2px;
+        }
+
+        .nav__link:hover::after,.active-link::after{
+          width:100%;
+        }
+
+        .active-link{
+          color:var(--primary-color);
+          font-weight:700;
+        }
+
+        .nav__toggle,.nav__close{
+          display:none;
+          background:none;
+          border:none;
+          font-size:1.5rem;
+          cursor:pointer;
+          color:var(--text-color);
+          padding:.5rem;
+        }
+
+        .nav__toggle:hover,.nav__close:hover{
+          color:var(--primary-color);
+        }
+
+        .hero{
+          padding-top:8rem;
+          background:linear-gradient(135deg,#1a1a1a,#2d2d2d,#dc2626);
+          position:relative;
+          overflow:hidden;
+          min-height:100vh;
+          display:flex;
+          align-items:center;
+        }
+
+        .hero__container{
+          position:relative;
+          z-index:2;
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:4rem;
+          align-items:center;
+          min-height:80vh;
+          max-width:1200px;
+          margin:0 auto;
+          padding:0 2rem;
+        }
+
+        .hero__content{
+          color:#fff;
+          text-shadow:0 2px 4px rgba(0,0,0,.3);
+        }
+
+        .hero__title{
+          font-size:3.5rem;
+          font-weight:900;
+          line-height:1.1;
+          margin-bottom:2rem;
+          letter-spacing:-0.02em;
+        }
+
+        .hero__title-accent{
+          color:#ff6b6b;
+          text-shadow:0 2px 8px rgba(255,107,107,.4);
+        }
+
+        .hero__description{
+          font-size:1.25rem;
+          opacity:.95;
+          margin-bottom:2.5rem;
+          line-height:1.6;
+          font-weight:400;
+        }
+
+        .hero__buttons{
+          display:flex;
+          gap:1.5rem;
+          flex-wrap:wrap;
+        }
+
+        .hero__img{
+          max-width:100%;
+          height:auto;
+          border-radius:1.5rem;
+          box-shadow:0 25px 50px rgba(0,0,0,.4);
+          transition:transform .3s ease;
+          background:linear-gradient(135deg,#333,#666);
+          min-height:400px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          color:#fff;
+          font-size:1.2rem;
+        }
+
+        .hero__img:hover{
+          transform:scale(1.02);
+        }
+
+        .about__container{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:3rem;
+          align-items:center;
+        }
+
+        .about__description{
+          color:var(--text-color-light);
+          margin-bottom:1rem;
+        }
+
+        .about__stats{
+          display:grid;
+          grid-template-columns:repeat(3,1fr);
+          gap:2rem;
+          margin-top:2rem;
+        }
+
+        .stat{
+          text-align:center;
+          padding:1.5rem;
+          background:#fff;
+          border:1px solid var(--border-color);
+          border-radius:1rem;
+          box-shadow:0 4px 20px rgba(0,0,0,.08);
+        }
+
+        .stat__number{
+          font-size:2.25rem;
+          color:var(--primary-color);
+          font-weight:800;
+        }
+
+        .services{
+          background:linear-gradient(135deg,#fafafa,#ffffff);
+          padding:6rem 0;
+        }
+
+        .services__grid{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+          gap:2.5rem;
+          max-width:1200px;
+          margin:0 auto;
+          padding:0 2rem;
+        }
+
+        .service__card{
+          background:#fff;
+          border:2px solid transparent;
+          border-radius:1.5rem;
+          padding:2.5rem;
+          text-align:center;
+          box-shadow:0 8px 30px rgba(0,0,0,.08);
+          transition:all .3s ease;
+          position:relative;
+          overflow:hidden;
+        }
+
+        .service__card::before{
+          content:"";
+          position:absolute;
+          top:0;
+          left:0;
+          right:0;
+          height:4px;
+          background:linear-gradient(90deg,var(--primary-color),var(--accent-color));
+          transform:scaleX(0);
+          transition:transform .3s ease;
+        }
+
+        .service__card:hover::before{
+          transform:scaleX(1);
+        }
+
+        .service__card:hover{
+          transform:translateY(-8px);
+          box-shadow:0 20px 50px rgba(220,38,38,.15);
+          border-color:var(--primary-color);
+        }
+
+        .service__icon{
+          width:90px;
+          height:90px;
+          border-radius:50%;
+          margin:0 auto 1.5rem;
+          background:linear-gradient(135deg,var(--primary-color),var(--accent-color));
+          display:grid;
+          place-items:center;
+          box-shadow:0 8px 25px rgba(220,38,38,.3);
+          color:#fff;
+          font-size:2rem;
+        }
+
+        .service__title{
+          font-size:1.5rem;
+          font-weight:700;
+          margin-bottom:1rem;
+          color:var(--text-color);
+        }
+
+        .service__description{
+          color:var(--text-color-light);
+          line-height:1.7;
+          font-size:1rem;
+        }
+
+        .portfolio__grid{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+          gap:2rem;
+        }
+
+        .portfolio__item{
+          border-radius:1rem;
+          overflow:hidden;
+          box-shadow:0 4px 20px rgba(0,0,0,.08);
+        }
+
+        .portfolio__image{
+          position:relative;
+        }
+
+        .portfolio__img{
+          width:100%;
+          height:240px;
+          object-fit:cover;
+          transition:transform .3s;
+          background:linear-gradient(135deg,#333,#666);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          color:#fff;
+          font-size:1.1rem;
+        }
+
+        .portfolio__overlay{
+          position:absolute;
+          inset:0;
+          display:grid;
+          place-items:center;
+          background:linear-gradient(135deg,rgba(220,38,38,.9),rgba(0,0,0,.8));
+          opacity:0;
+          color:#fff;
+          text-align:center;
+          padding:1rem;
+          transition:opacity .3s ease;
+        }
+
+        .portfolio__item:hover .portfolio__overlay{
+          opacity:1;
+        }
+
+        .portfolio__item:hover .portfolio__img{
+          transform:scale(1.06);
+        }
+
+        .providers__grid{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+          gap:1.25rem;
+          align-items:stretch;
+        }
+
+        .providers__item{
+          background:#fff;
+          border:1px solid var(--border-color);
+          border-radius:.75rem;
+          padding:1rem;
+          display:grid;
+          gap:.5rem;
+          justify-items:center;
+        }
+
+        .providers__logo-wrap{
+          width:120px;
+          height:120px;
+          display:grid;
+          place-items:center;
+          aspect-ratio:1/1;
+          background:linear-gradient(135deg,#f0f0f0,#e0e0e0);
+          border-radius:.5rem;
+          color:var(--text-color-light);
+          font-size:.9rem;
+        }
+
+        .providers__name{
+          font-size:.9rem;
+          color:var(--text-color-light);
+        }
+
+        .providers__hint{
+          text-align:center;
+          color:var(--text-color-light);
+          margin-top:1rem;
+        }
+
+        .contact__container{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:3rem;
+        }
+
+        .contact__info{
+          display:grid;
+          gap:1rem;
+        }
+
+        .contact__card{
+          display:flex;
+          gap:1rem;
+          padding:1rem;
+          background:#fff;
+          border:1px solid var(--border-color);
+          border-radius:1rem;
+        }
+
+        .contact__icon{
+          width:50px;
+          height:50px;
+          background:linear-gradient(135deg,var(--primary-color),var(--accent-color));
+          border-radius:50%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          color:#fff;
+          font-size:1.25rem;
+          flex-shrink:0;
+        }
+
+        .contact__form{
+          background:#fff;
+          border:1px solid var(--border-color);
+          border-radius:1rem;
+          padding:2rem;
+        }
+
+        .form__input{
+          width:100%;
+          padding:1rem;
+          border:2px solid var(--border-color);
+          border-radius:.5rem;
+          margin-bottom:1rem;
+        }
+
+        .form__textarea{
+          min-height:120px;
+        }
+
+        .footer{
+          background:linear-gradient(135deg,#1a1a1a,#2d2d2d);
+          color:#fff;
+          padding:4rem 0 2rem;
+          border-top:3px solid var(--primary-color);
+        }
+
+        .footer__content{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+          gap:3rem;
+          max-width:1200px;
+          margin:0 auto;
+          padding:0 2rem;
+        }
+
+        .footer__brand{
+          max-width:350px;
+        }
+
+        .footer__logo{
+          display:flex;
+          align-items:center;
+          gap:.75rem;
+          margin-bottom:1rem;
+          font-weight:800;
+          font-size:1.5rem;
+          color:var(--primary-color);
+        }
+
+        .footer__logo-img{
+          width:48px;
+          height:48px;
+          object-fit:contain;
+          border-radius:8px;
+        }
+
+        .footer__description{
+          color:#d1d5db;
+          line-height:1.7;
+          font-size:1rem;
+        }
+
+        .footer__title{
+          font-size:1.25rem;
+          margin-bottom:1rem;
+          color:#fff;
+          font-weight:700;
+        }
+
+        .footer__list{
+          display:flex;
+          flex-direction:column;
+          gap:.75rem;
+          list-style:none;
+          margin:0;
+          padding:0;
+        }
+
+        .footer__link{
+          color:#d1d5db;
+          text-decoration:none;
+          transition:color .3s ease;
+          font-weight:500;
+        }
+
+        .footer__link:hover{
+          color:var(--primary-color);
+          transform:translateX(4px);
+        }
+
+        .footer__contact-item{
+          display:flex;
+          align-items:center;
+          gap:.75rem;
+          margin-bottom:.75rem;
+          color:#d1d5db;
+          font-weight:500;
+        }
+
+        .footer__contact-item:hover{
+          color:var(--primary-color);
+        }
+
+        .footer__bottom{
+          border-top:1px solid rgba(255,255,255,.1);
+          margin-top:2rem;
+          padding-top:1.5rem;
+          text-align:center;
+          color:#9ca3af;
+        }
+
+        .scrollup{
+          position:fixed;
+          right:1rem;
+          bottom:-20%;
+          background:var(--primary-color);
+          color:#fff;
+          border-radius:999px;
+          width:44px;
+          height:44px;
+          display:grid;
+          place-items:center;
+          transition:bottom .2s;
+          text-decoration:none;
+        }
+
+        .scrollup.show-scroll,.scrollup{
+          bottom:4rem;
+        }
+
+        @media (max-width:992px){
+          .hero__container{
+            grid-template-columns:1fr;
+            text-align:center;
+          }
+          .about__container{
+            grid-template-columns:1fr;
+          }
+          .about__stats{
+            grid-template-columns:repeat(2,1fr);
+          }
+          .contact__container{
+            grid-template-columns:1fr;
+          }
+        }
+
+        @media (max-width:768px){
+          .nav{
+            height:70px;
+            padding:0 1rem;
+          }
+          .nav__list{
+            display:none;
+          }
+          .nav__toggle,.nav__close{
+            display:block;
+          }
+          .nav__menu{
+            position:fixed;
+            top:0;
+            left:100%;
+            right:0;
+            bottom:0;
+            background:#fff;
+            transition:left .3s ease;
+            padding:5rem 2rem;
+            z-index:1001;
+            box-shadow:0 0 20px rgba(0,0,0,.1);
+          }
+          .show-menu{
+            left:0;
+          }
+          .hero{
+            padding-top:7rem;
+            min-height:90vh;
+          }
+          .hero__container{
+            grid-template-columns:1fr;
+            gap:2rem;
+            text-align:center;
+            padding:0 1rem;
+          }
+          .hero__title{
+            font-size:2.5rem;
+            margin-bottom:1.5rem;
+          }
+          .hero__description{
+            font-size:1.1rem;
+            margin-bottom:2rem;
+          }
+          .hero__buttons{
+            justify-content:center;
+          }
+          .about__container{
+            grid-template-columns:1fr;
+            text-align:center;
+            gap:2rem;
+          }
+          .about__stats{
+            grid-template-columns:repeat(2,1fr);
+            gap:1.5rem;
+          }
+          .services__grid{
+            grid-template-columns:1fr;
+            gap:1.5rem;
+          }
+          .portfolio__grid{
+            grid-template-columns:1fr;
+            gap:1.5rem;
+          }
+          .providers__grid{
+            grid-template-columns:repeat(2,1fr);
+            gap:1rem;
+          }
+          .contact__container{
+            grid-template-columns:1fr;
+            gap:2rem;
+          }
+          .section{
+            padding:3rem 0 1rem;
+          }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__logo">
+                <img src="images/logo.png" alt="Balcan Building Logo" class="nav__logo-img" onerror="this.style.display='none'">
+                <span class="nav__logo-text">Balcan Building</span>
+            </div>
+            
+            <div class="nav__menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Acasă</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">Despre Noi</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#services" class="nav__link">Servicii</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#portfolio" class="nav__link">Portofoliu</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#providers" class="nav__link">Furnizori</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero section" id="home">
+            <div class="hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        Firma de <span class="hero__title-accent">construcții civile</span> și industriale
+                    </h1>
+                    <p class="hero__description">
+                        Calitate și profesionalism în fiecare proiect. Experiență de peste 15 ani în construcții civile și industriale.
+                    </p>
+                    <div class="hero__buttons">
+                        <a href="#services" class="button button--primary">Serviciile Noastre</a>
+                        <a href="#contact" class="button button--outline">Contactează-ne</a>
+                    </div>
+                </div>
+                
+                <div class="hero__image">
+                    <div class="hero__img">Imagine Construcții</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="about__container">
+                <div class="about__content">
+                    <h2 class="section__title">Despre Noi</h2>
+                    <p class="about__description">
+                        <strong>Balcan Building SRL</strong> activează pe piața de construcții din România din 2005, având la activ, în tot acest timp, clienți mulțumiți și sute de proiecte finalizate.
+                    </p>
+                    <p class="about__description">
+                        Calitatea lucrărilor executate și îmbunătățirea serviciilor oferite clienților reprezintă principalele noastre preocupări. Echipa noastră de specialiști cu experiență vastă în domeniul construcțiilor garantează execuția la cel mai înalt nivel a tuturor proiectelor.
+                    </p>
+                    
+                    <div class="about__stats">
+                        <div class="stat">
+                            <h3 class="stat__number">15+</h3>
+                            <p class="stat__text">Ani experiență</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="stat__number">200+</h3>
+                            <p class="stat__text">Proiecte finalizate</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="stat__number">100%</h3>
+                            <p class="stat__text">Clienți mulțumiți</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about__image">
+                    <div class="hero__img">Echipa Noastră</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services section" id="services">
+            <div class="services__container">
+                <h2 class="section__title">Serviciile Noastre</h2>
+                <p class="section__subtitle">Oferim soluții complete pentru construcții civile și industriale</p>
+                
+                <div class="services__grid">
+                    <div class="service__card">
+                        <div class="service__icon">🏗️</div>
+                        <h3 class="service__title">Construcții civile și industriale</h3>
+                        <p class="service__description">
+                            Calitatea lucrărilor executate și îmbunătățirea serviciilor oferite clienților reprezintă principalele noastre preocupări.
+                        </p>
+                    </div>
+                    
+                    <div class="service__card">
+                        <div class="service__icon">🌳</div>
+                        <h3 class="service__title">Amenajări exterioare și interioare</h3>
+                        <p class="service__description">
+                            Oferim soluții complete pentru amenajări interioare și exterioare, adaptate nevoilor și preferințelor dumneavoastră.
+                        </p>
+                    </div>
+                    
+                    <div class="service__card">
+                        <div class="service__icon">🏠</div>
+                        <h3 class="service__title">Lucrări de termo/hidroizolații</h3>
+                        <p class="service__description">
+                            Asigurăm lucrări de termo și hidroizolații de înaltă calitate pentru protecția și eficiența energetică a clădirilor.
+                        </p>
+                    </div>
+                    
+                    <div class="service__card">
+                        <div class="service__icon">🔨</div>
+                        <h3 class="service__title">Tencuieli mecanizate</h3>
+                        <p class="service__description">
+                            Executăm tencuieli mecanizate pentru finisaje durabile și estetice, folosind echipamente moderne.
+                        </p>
+                    </div>
+                    
+                    <div class="service__card">
+                        <div class="service__icon">📊</div>
+                        <h3 class="service__title">Audit energetic</h3>
+                        <p class="service__description">
+                            Realizăm audituri energetice pentru a identifica și implementa soluții de eficiență energetică.
+                        </p>
+                    </div>
+                    
+                    <div class="service__card">
+                        <div class="service__icon">🔧</div>
+                        <h3 class="service__title">Renovări și modernizări</h3>
+                        <p class="service__description">
+                            Specializați în renovări complete și modernizări, transformăm spațiile conform celor mai noi standarde.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio section" id="portfolio">
+            <div class="portfolio__container">
+                <h2 class="section__title">Portofoliul Nostru</h2>
+                <p class="section__subtitle">Proiecte realizate cu succes pentru clienții noștri</p>
+                
+                <div class="portfolio__grid">
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <div class="portfolio__img">Locuință S+P+2E</div>
+                            <div class="portfolio__overlay">
+                                <h3 class="portfolio__title">Locuință S+P+2E</h3>
+                                <p class="portfolio__description">Construcție completă cu finisaje moderne</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <div class="portfolio__img">Hala Industrială</div>
+                            <div class="portfolio__overlay">
+                                <h3 class="portfolio__title">Hala Industrială</h3>
+                                <p class="portfolio__description">Construcție industrială cu structură metalică</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <div class="portfolio__img">Renovare Completă</div>
+                            <div class="portfolio__overlay">
+                                <h3 class="portfolio__title">Renovare Completă</h3>
+                                <p class="portfolio__description">Modernizare și amenajare interioară</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <div class="portfolio__img">Spațiu Comercial</div>
+                            <div class="portfolio__overlay">
+                                <h3 class="portfolio__title">Spațiu Comercial</h3>
+                                <p class="portfolio__description">Construcție și amenajare spațiu comercial</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <div class="portfolio__img">Amenajare Exterioară</div>
+                            <div class="portfolio__overlay">
+                                <h3 class="portfolio__title">Amenajare Exterioară</h3>
+                                <p class="portfolio__description">Design și execuție amenajare peisagistică</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <div class="portfolio__img">Termoizolații</div>
+                            <div class="portfolio__overlay">
+                                <h3 class="portfolio__title">Termoizolații</h3>
+                                <p class="portfolio__description">Lucrări de izolație termică și hidroizolație</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Providers Section -->
+        <section class="providers section" id="providers">
+            <div class="container">
+                <h2 class="section__title">Furnizori</h2>
+                <p class="section__subtitle">Partenerii noștri de încredere</p>
+                <div class="providers__grid">
+                    <div class="providers__item">
+                        <div class="providers__logo-wrap">Logo 1</div>
+                        <span class="providers__name">Provider 1</span>
+                    </div>
+                    <div class="providers__item">
+                        <div class="providers__logo-wrap">Logo 2</div>
+                        <span class="providers__name">Provider 2</span>
+                    </div>
+                    <div class="providers__item">
+                        <div class="providers__logo-wrap">Logo 3</div>
+                        <span class="providers__name">Provider 3</span>
+                    </div>
+                    <div class="providers__item">
+                        <div class="providers__logo-wrap">Logo 4</div>
+                        <span class="providers__name">Provider 4</span>
+                    </div>
+                    <div class="providers__item">
+                        <div class="providers__logo-wrap">Logo 5</div>
+                        <span class="providers__name">Provider 5</span>
+                    </div>
+                    <div class="providers__item">
+                        <div class="providers__logo-wrap">Logo 6</div>
+                        <span class="providers__name">Provider 6</span>
+                    </div>
+                </div>
+                <p class="providers__hint">Adăugați logo-urile în folderul <code>/images/providers</code> și păstrați aspectul 1:1 pentru simetrie.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="contact__container">
+                <h2 class="section__title">Contactează-ne</h2>
+                <p class="section__subtitle">Suntem aici să vă ajutăm cu proiectul dumneavoastră</p>
+                
+                <div class="contact__content">
+                    <div class="contact__info">
+                        <div class="contact__card">
+                            <div class="contact__icon">📞</div>
+                            <div class="contact__details">
+                                <h3 class="contact__title">Telefon</h3>
+                                <p class="contact__text">0241-664910</p>
+                                <p class="contact__text">0747-041004</p>
+                                <p class="contact__text">0744-381663</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact__card">
+                            <div class="contact__icon">✉️</div>
+                            <div class="contact__details">
+                                <h3 class="contact__title">Email</h3>
+                                <p class="contact__text">office@balcan-construct.ro</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact__card">
+                            <div class="contact__icon">📍</div>
+                            <div class="contact__details">
+                                <h3 class="contact__title">Adresă</h3>
+                                <p class="contact__text">Constanța, Blv. Tomis 320</p>
+                                <p class="contact__text">bl M4 sc A ap 3 parter</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact__form">
+                        <input type="text" name="name" placeholder="Numele complet" class="form__input" required>
+                        <input type="email" name="email" placeholder="Adresa de email" class="form__input" required>
+                        <input type="tel" name="phone" placeholder="Numărul de telefon" class="form__input">
+                        <select name="service" class="form__input">
+                            <option value="">Selectează serviciul</option>
+                            <option value="constructii-civile">Construcții civile</option>
+                            <option value="constructii-industriale">Construcții industriale</option>
+                            <option value="amenajari">Amenajări exterioare/interioare</option>
+                            <option value="termoizolatie">Termo/hidroizolații</option>
+                            <option value="tencuieli">Tencuieli mecanizate</option>
+                            <option value="audit-energetic">Audit energetic</option>
+                            <option value="renovari">Renovări și modernizări</option>
+                        </select>
+                        <textarea name="message" placeholder="Descrie proiectul dumneavoastră..." class="form__input form__textarea" rows="5" required></textarea>
+                        <button type="submit" class="button button--primary">Trimite Mesajul</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <img src="images/logo.png" alt="Balcan Building Logo" class="footer__logo-img" onerror="this.style.display='none'">
+                        <span class="footer__logo-text">Balcan Building</span>
+                    </div>
+                    <p class="footer__description">
+                        Firma de construcții civile și industriale din Constanța. Calitate și profesionalism în fiecare proiect.
+                    </p>
+                </div>
+                
+                <div class="footer__links">
+                    <h3 class="footer__title">Link-uri Rapide</h3>
+                    <ul class="footer__list">
+                        <li><a href="#about" class="footer__link">Despre Noi</a></li>
+                        <li><a href="#services" class="footer__link">Servicii</a></li>
+                        <li><a href="#portfolio" class="footer__link">Portofoliu</a></li>
+                        <li><a href="#providers" class="footer__link">Furnizori</a></li>
+                        <li><a href="#contact" class="footer__link">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__contact">
+                    <h3 class="footer__title">Contact</h3>
+                    <div class="footer__contact-item">📞 <span>0241-664910</span></div>
+                    <div class="footer__contact-item">✉️ <span>office@balcan-construct.ro</span></div>
+                    <div class="footer__contact-item">📍 <span>Constanța, Blv. Tomis 320</span></div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copy">© 2025 Balcan Building SRL. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Up Button -->
+    <a href="#" class="scrollup">↑</a>
+
+    <script>
+        // Simple smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Show/hide scroll up button
+        window.addEventListener('scroll', function() {
+            const scrollUp = document.querySelector('.scrollup');
+            if (window.scrollY > 400) {
+                scrollUp.style.bottom = '4rem';
+            } else {
+                scrollUp.style.bottom = '-20%';
+            }
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav__link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active-link');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
