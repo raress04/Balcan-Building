@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
@@ -7,15 +8,15 @@ import { MasonryGallery } from './components/MasonryGallery'
 import { Providers } from './components/Providers'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { ServicesPage } from './components/ServicesPage'
 
-export const App: React.FC = () => {
+const Home: React.FC = () => {
   // Scroll to section with header offset
   const scrollToId = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
     const header = document.getElementById('app-header')
     const headerOffset = header ? header.offsetHeight : 0
-    // Add extra offset for contact section to scroll lower on page
     const extraOffset = id === 'contact' ? -50 : 0
     const y = el.getBoundingClientRect().top + window.scrollY - headerOffset - extraOffset
     window.scrollTo({ top: y, behavior: 'smooth' })
@@ -41,26 +42,18 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Scroll reveal animations using Intersection Observer
+  // Scroll reveal animations
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal')
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed')
         }
       })
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    })
-
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
     revealElements.forEach((el) => observer.observe(el))
-
-    return () => {
-      revealElements.forEach((el) => observer.unobserve(el))
-    }
+    return () => { revealElements.forEach((el) => observer.unobserve(el)) }
   }, [])
 
   return (
@@ -75,7 +68,25 @@ export const App: React.FC = () => {
         <Contact />
       </main>
       <Footer />
-      {/* WhatsApp floating button */}
+    </>
+  )
+}
+
+export const App: React.FC = () => {
+  const location = useLocation()
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<ServicesPage />} />
+      </Routes>
+
       <a
         href="https://wa.me/40744381663"
         target="_blank"

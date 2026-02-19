@@ -354,23 +354,345 @@ body {
   gap: .75rem;
   color: var(--primary-color);
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  /* Slightly smaller base size */
   letter-spacing: -0.02em;
+  text-decoration: none;
+  /* Ensure no underline */
+  z-index: 100;
+  /* Ensure above overlap */
 }
 
 .nav__logo-text {
-  position: absolute;
-  left: 35%;
-  transform: translateX(-50%);
+  position: relative;
+  /* layout flow, not absolute */
+  transform: none;
+  left: auto;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .nav__logo-img {
   width: 140px;
-  height: 140px;
+  /* Default desktop width */
+  height: auto;
+  /* Maintain aspect ratio */
   object-fit: contain;
   border-radius: 8px;
 }
+
+/* Mobile Header Adjustments */
+@media screen and (max-width: 768px) {
+  .nav__logo-img {
+    width: 50px;
+    /* Much smaller logo */
+  }
+
+  .nav__logo-text {
+    font-size: 1.1rem;
+    /* Adjust text size */
+  }
+
+  .nav {
+    padding: 0 1.5rem;
+    /* More space */
+  }
+}
+
+.nav__list {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  margin: 0;
+}
+
+.nav__link {
+  position: relative;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: .5rem 0;
+  transition: all .3s ease;
+  letter-spacing: 0.01em;
+}
+
+.nav__link:hover {
+  color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transition: width .3s ease;
+  border-radius: 2px;
+}
+
+.nav__link:hover::after,
+.active-link::after {
+  width: 100%;
+}
+
+.active-link {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.nav__toggle,
+.nav__close {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: .5rem;
+}
+
+.nav__toggle:hover,
+.nav__close:hover {
+  color: var(--primary-color);
+}
+
+.hero {
+  padding-top: 8rem;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #dc2626);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile Hero Overlay Fix */
+@media screen and (max-width: 768px) {
+  .hero {
+    padding-top: 12rem;
+    align-items: flex-start;
+  }
+
+  .hero__container {
+    padding-top: 2rem;
+  }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(/images/hero-bg.jpg) center/cover;
+  opacity: .15;
+  z-index: 1;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero__content {
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.hero__title-accent {
+  color: #ff6b6b;
+  text-shadow: 0 2px 8px rgba(255, 107, 107, .4);
+}
+
+.hero__description {
+  font-size: 1.25rem;
+  opacity: .95;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero__img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, .4);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  animation: float 6s ease-in-out 1s infinite;
+}
+
+.hero__img:hover {
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, .5);
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about__description {
+  color: var(--text-color-light);
+  margin-bottom: 1rem;
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--card-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .2);
+}
+
+.stat__number {
+  font-size: 2.25rem;
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+.services {
+  background: transparent;
+  padding: 4rem 0 3rem;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.service__card {
+  background: var(--card-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+  transition: all var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.service__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.service__card:hover::before {
+  transform: scaleX(1);
+}
+
+.service__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(220, 38, 38, .2);
+  border-color: var(--primary-color);
+}
+
+.service__icon {
+  margin: 0 auto 0.5rem;
+  display: grid;
+  place-items: center;
+  transition: transform var(--transition-spring);
+}
+
+.service__card:hover .service__icon {
+  transform: scale(1.15);
+}
+
+.service__emoji {
+  font-size: 1.85rem;
+  line-height: 1;
+}
+
+.service__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.service__description {
+  color: var(--text-color-light);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Services Page Back Button */
+.services-page__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem 1.25rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--primary-color);
+}
+
+.services-page__back:hover {
+  background: var(--primary-color-alt);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
 
 .nav__list {
   display: flex;
@@ -872,7 +1194,7 @@ body {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(6px);
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 100px;
@@ -907,7 +1229,7 @@ body {
   padding: 3px 10px;
   background: rgba(239, 68, 68, 0.85);
   color: #fff;
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1217,6 +1539,14 @@ body {
   align-items: start;
 }
 
+@media screen and (max-width: 768px) {
+  .providers__slide {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+
 
 
 /* Navigation arrows - positioned on edges */
@@ -1255,6 +1585,16 @@ body {
 
 .providers__nav:active {
   transform: translateY(-50%) scale(0.95);
+}
+
+@media screen and (min-width: 1024px) {
+  .providers__nav--prev {
+    left: -40px;
+  }
+
+  .providers__nav--next {
+    right: -40px;
+  }
 }
 
 /* Pagination dots */
@@ -1404,11 +1744,117 @@ body {
   transition: all .3s ease;
 }
 
-.form__file-button:hover {
-  border-color: var(--primary-color);
-  background: rgba(220, 38, 38, .05);
-  color: var(--primary-color);
+
+/* ─── Portfolio Carousel ─── */
+.portfolio-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0 3rem;
+  /* Ensure it takes full width of container but respects padding */
+  width: 100%;
 }
+
+.portfolio-track-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.portfolio-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.portfolio-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 4px;
+  /* small padding to avoid edge clipping */
+}
+
+/* Mobile: 1 item per slide */
+@media screen and (max-width: 768px) {
+  .portfolio-slide .gallery-item {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* Desktop: 3 items per slide */
+@media screen and (min-width: 769px) {
+  .portfolio-slide .gallery-item {
+    width: calc(33.333% - 1rem);
+    /* 3 items minus gap */
+  }
+}
+
+/* Navigation Arrows */
+.portfolio-nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: var(--container-color);
+  border: 1px solid var(--text-border);
+  color: var(--title-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-nav:hover {
+  background: var(--first-color);
+  color: #fff;
+  border-color: var(--first-color);
+}
+
+.portfolio-nav--prev {
+  left: 0;
+}
+
+.portfolio-nav--next {
+  right: 0;
+}
+
+/* Dots */
+.portfolio-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.portfolio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-color-light);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0;
+}
+
+.portfolio-dot.active {
+  background: var(--first-color);
+  transform: scale(1.2);
+}
+
+/* Reuse existing item styles but ensure flex behavior */
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .form__file-name {
   color: var(--text-color);
@@ -1688,10 +2134,11 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: none;
-    /* Fully transparent */
-    padding: 4.5rem 1.25rem 1rem;
-    padding-top: max(4.5rem, calc(2.5rem + env(safe-area-inset-top)));
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 6rem 1.25rem 2rem;
+    padding-top: max(6rem, calc(2.5rem + env(safe-area-inset-top)));
     z-index: 999;
     transform: translateY(-120%);
     opacity: 0;
@@ -1971,5 +2418,89 @@ body {
 
   .providers__slide {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================= */
+/* MOBILE UI FIXES (OVERRIDES)               */
+/* ========================================= */
+
+/* 1. Hero Padding Fix */
+@media screen and (max-width: 768px) {
+  .hero {
+    padding-top: 13rem !important;
+    /* Increased to ensure clearance */
+    align-items: flex-start !important;
+  }
+}
+
+/* 2. Providers Controls (Bottom) */
+.providers__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.providers__nav {
+  position: relative !important;
+  /* Override absolute */
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--card-color);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.providers__nav:hover {
+  background: var(--primary-color);
+  transform: scale(1.1) !important;
+  border-color: var(--primary-color);
+}
+
+.providers__nav:active {
+  transform: scale(0.95) !important;
+}
+
+/* 3. Providers Mobile Layout */
+@media screen and (max-width: 768px) {
+  .providers__slide {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* Force 2 columns */
+    gap: 0.75rem !important;
+    align-items: center !important;
+    padding: 0.5rem !important;
+  }
+
+  .providers__item {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .providers__logo-wrap {
+    width: 100% !important;
+    height: 80px !important;
+    /* Fixed height for consistency */
+  }
+
+  .providers__logo-wrap img {
+    max-height: 60px !important;
+    width: auto !important;
   }
 }

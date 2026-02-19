@@ -23,7 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ onCTAClick, onContactClick }) => {
         </div>
         <div className="hero__image">
           <img
-            src="/images/hero-construction.jpg"
+            src={`${import.meta.env.BASE_URL}images/hero-construction.jpg`}
             alt="Construcții Balcan Building"
             className="hero__img"
             loading="eager"

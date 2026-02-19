@@ -40,8 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ active, onNavigate }) => {
     <header id="app-header" className={`header ${scrolled ? 'scroll-header' : ''}`}>
       <nav className="nav container">
         <div className="nav__logo">
-          <img src="/images/logo.png" alt="Balcan Building Logo" className="nav__logo-img" />
-          <span className="nav__logo-text">Balcan Building</span>
+          <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Balcan Building Logo" className="nav__logo-img" />
         </div>
         <button className="nav__toggle" onClick={() => setOpen(true)} aria-label="Deschide meniul">☰</button>
         <div className={`nav__menu ${open ? 'show-menu' : ''}`}>

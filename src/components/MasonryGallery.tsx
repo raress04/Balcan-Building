@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 
 // Declare global types for CDN-loaded libraries
 declare global {
@@ -184,9 +184,10 @@ const projects: Project[] = [
 
 // Build full photo arrays for each project (cover + gallery images)
 function getProjectPhotos(project: Project): string[] {
-    const photos: string[] = [`/images/portfolio/${project.id}.jpg`]
+    const basePath = import.meta.env.BASE_URL
+    const photos: string[] = [`${basePath}images/portfolio/${project.id}.jpg`]
     for (let i = 1; i <= project.imageCount; i++) {
-        photos.push(`/images/gallery/${project.id}/${i}.jpg`)
+        photos.push(`${basePath}images/gallery/${project.id}/${i}.jpg`)
     }
     return photos
 }
@@ -305,24 +306,81 @@ const ProjectCard: React.FC<{
 }
 
 // ─── Main Gallery Component ─────────────────────────────────────
+// ─── Main Gallery Component ─────────────────────────────────────
 export const MasonryGallery: React.FC = () => {
     const [activeFilter, setActiveFilter] = useState('*')
+    // Responsive: 1 item on mobile (<768), 3 items on desktop
+    const [itemsPerSlide, setItemsPerSlide] = useState(
+        typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 3
+    )
+    const [currentSlide, setCurrentSlide] = useState(0)
+    const touchStartX = useRef(0)
 
-    // Filter projects using React state — no Isotope needed
+    // Filter projects using React state
     const filteredProjects = activeFilter === '*'
         ? projects
         : projects.filter((p) => p.category === activeFilter)
 
+    // Chunk projects into slides
+    const slides = []
+    for (let i = 0; i < filteredProjects.length; i += itemsPerSlide) {
+        slides.push(filteredProjects.slice(i, i + itemsPerSlide))
+    }
+    const totalSlides = slides.length
+
+    // Handle filter change
     const handleFilter = useCallback((filter: string) => {
         setActiveFilter(filter)
+        setCurrentSlide(0) // Reset to first slide
     }, [])
 
-    // Handle lightbox open — ISOLATED per project
+    // Handle resize
+    useEffect(() => {
+        const handleResize = () => {
+            const newPerSlide = window.innerWidth < 768 ? 1 : 3
+            setItemsPerSlide((prev) => {
+                if (prev !== newPerSlide) {
+                    setCurrentSlide(0)
+                    return newPerSlide
+                }
+                return prev
+            })
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    // Carousel Navigation
+    const nextSlide = useCallback(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides)
+    }, [totalSlides])
+
+    const prevSlide = useCallback(() => {
+        setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides)
+    }, [totalSlides])
+
+    const goToSlide = (index: number) => {
+        setCurrentSlide(index)
+    }
+
+    // Touch/Swipe Support
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX
+    }
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        const diff = touchStartX.current - e.changedTouches[0].clientX
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide()
+            else prevSlide()
+        }
+    }
+
+    // Handle lightbox open
     const handleOpenLightbox = useCallback((project: Project, startIndex: number) => {
         if (!window.GLightbox) return
 
         const photos = getProjectPhotos(project)
-        const slides = photos.map((src, i) => ({
+        const projectSlides = photos.map((src, i) => ({
             href: src,
             type: 'image' as const,
             title: i === 0 ? project.title : `${project.title} — Foto ${i}`,
@@ -332,7 +390,7 @@ export const MasonryGallery: React.FC = () => {
         }))
 
         const lightbox = window.GLightbox({
-            elements: slides,
+            elements: projectSlides,
             startAt: startIndex,
             touchNavigation: true,
             loop: true,
@@ -367,15 +425,58 @@ export const MasonryGallery: React.FC = () => {
                 ))}
             </div>
 
-            <div className="gallery-grid" id="gallery-grid">
-                {filteredProjects.map((project, i) => (
-                    <ProjectCard
-                        key={project.id}
-                        project={project}
-                        index={i}
-                        onOpenLightbox={handleOpenLightbox}
-                    />
-                ))}
+            {/* Carousel Structure */}
+            <div
+                className="portfolio-carousel reveal"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+            >
+                {/* Navigation Arrows (visible if >1 slide) */}
+                {totalSlides > 1 && (
+                    <>
+                        <button className="portfolio-nav portfolio-nav--prev" onClick={prevSlide} aria-label="Proiecte anterioare">
+                            <ArrowLeft />
+                        </button>
+                        <button className="portfolio-nav portfolio-nav--next" onClick={nextSlide} aria-label="Proiecte următoare">
+                            <ArrowRight />
+                        </button>
+                    </>
+                )}
+
+                <div className="portfolio-track-container">
+                    <div
+                        className="portfolio-track"
+                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    >
+                        {slides.map((slideGroup, slideIndex) => (
+                            <div key={slideIndex} className="portfolio-slide">
+                                {slideGroup.map((project, i) => (
+                                    <ProjectCard
+                                        key={project.id}
+                                        project={project}
+                                        index={i}
+                                        onOpenLightbox={handleOpenLightbox}
+                                    />
+                                ))}
+                                {/* Fill empty slots if last slide is incomplete (optional, or let flex handle it) */}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Dots Pagination */}
+                {totalSlides > 1 && (
+                    <div className="portfolio-dots">
+                        {slides.map((_, idx) => (
+                            <button
+                                key={idx}
+                                className={`portfolio-dot${idx === currentSlide ? ' active' : ''}`}
+                                onClick={() => goToSlide(idx)}
+                                aria-label={`Pagina ${idx + 1}`}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     )

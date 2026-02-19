@@ -6,7 +6,7 @@ export const Footer: React.FC = () => (
       <div className="footer__content">
         <div className="footer__brand">
           <div className="footer__logo">
-            <img src="/images/logo.png" alt="Balcan Building Logo" className="footer__logo-img" />
+            <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Balcan Building Logo" className="footer__logo-img" />
             <span className="footer__logo-text">Balcan Building</span>
           </div>
           <p className="footer__description">Firma de construcții civile și industriale din Constanța. Calitate și profesionalism în fiecare proiect.</p>
