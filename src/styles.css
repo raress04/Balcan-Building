@@ -228,8 +228,11 @@ body {
 
 .section {
   padding: 4rem 0 2rem;
-  scroll-margin-top: 100px;
-  /* Offset for fixed header (80px) + spacing */
+  scroll-margin-top: 300px;
+}
+
+.gallery-section {
+  scroll-margin-top: 300px;
 }
 
 .section__title {
@@ -2430,8 +2433,7 @@ body {
 /* 1. Hero Padding Fix */
 @media screen and (max-width: 768px) {
   .hero {
-    padding-top: 13rem !important;
-    /* Increased to ensure clearance */
+    padding-top: 6rem !important;
     align-items: flex-start !important;
   }
 }
