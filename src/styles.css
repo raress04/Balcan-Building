@@ -228,6 +228,8 @@ body {
 
 .section {
   padding: 4rem 0 2rem;
+  scroll-margin-top: 100px;
+  /* Offset for fixed header (80px) + spacing */
 }
 
 .section__title {
