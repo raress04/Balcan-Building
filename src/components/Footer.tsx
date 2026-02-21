@@ -23,9 +23,9 @@ export const Footer: React.FC = () => (
         </div>
         <div className="footer__contact">
           <h3 className="footer__title">Contact</h3>
-          <div className="footer__contact-item">📞 <span>0241-664910</span></div>
+          <div className="footer__contact-item">📞 <span>+40 744 381 663</span></div>
           <div className="footer__contact-item">✉️ <span>office@balcan-construct.ro</span></div>
-          <div className="footer__contact-item">📍 <span>Constanța, Blv. Tomis 320</span></div>
+          <div className="footer__contact-item">📍 <span>Cumpăna, Str. Ion Minulescu nr. 5, 907105, Jud. Constanța</span></div>
         </div>
       </div>
       <div className="footer__bottom">

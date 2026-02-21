@@ -228,11 +228,11 @@ body {
 
 .section {
   padding: 4rem 0 2rem;
-  scroll-margin-top: 300px;
+  scroll-margin-top: 450px;
 }
 
 .gallery-section {
-  scroll-margin-top: 300px;
+  scroll-margin-top: 450px;
 }
 
 .section__title {
@@ -379,11 +379,8 @@ body {
 
 .nav__logo-img {
   width: 140px;
-  /* Default desktop width */
   height: auto;
-  /* Maintain aspect ratio */
   object-fit: contain;
-  border-radius: 8px;
 }
 
 /* Mobile Header Adjustments */
@@ -549,7 +546,7 @@ body {
 }
 
 .hero__img {
-  max-width: 100%;
+  max-width: 88%;
   height: auto;
   border-radius: 1.5rem;
   box-shadow: 0 25px 50px rgba(0, 0, 0, .4);
@@ -1503,6 +1500,11 @@ body {
   color: var(--text-color-light);
 }
 
+.providers__name--small {
+  font-size: .72rem;
+  white-space: nowrap;
+}
+
 /* Individual logo size adjustments */
 .providers__logo-wrap img.providers__logo--bigger {
   transform: scale(1.8);
@@ -1525,10 +1527,14 @@ body {
 }
 
 .providers__slides {
-  overflow: hidden;
+  /* clip only horizontally (hides adjacent slides) but allows cards
+     to translateY upward on hover without being clipped */
+  overflow-x: clip;
+  overflow-y: visible;
   border-radius: 0.75rem;
   margin: 0 2.5rem;
-  /* Space for arrows on sides */
+  padding: 0.75rem 0;
+  /* breathing room for hover lift */
 }
 
 .providers__slides-track {
@@ -2506,5 +2512,135 @@ body {
   .providers__logo-wrap img {
     max-height: 60px !important;
     width: auto !important;
+  }
+}
+
+/* ========================================= */
+/* LARGE DESKTOP OPTIMIZATIONS (1200px+)     */
+/* ========================================= */
+@media screen and (min-width: 1200px) {
+
+  /* Wider container */
+  .container {
+    max-width: 1400px;
+    padding: 0 3rem;
+  }
+
+  /* Nav */
+  .nav {
+    max-width: 1400px;
+    padding: 0 3rem;
+  }
+
+  /* Hero — remove excess empty space */
+  .hero__container {
+    max-width: 1400px;
+    padding: 0 3rem;
+    min-height: 60vh;
+    gap: 6rem;
+  }
+
+  .hero__title {
+    font-size: 4.5rem;
+  }
+
+  .hero__description {
+    font-size: 1.35rem;
+  }
+
+  /* Section headings */
+  .section__title {
+    font-size: 2.75rem;
+  }
+
+  .section {
+    padding: 6rem 0 3rem;
+  }
+
+  /* Services grid — 3 columns on large screens */
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1400px;
+    padding: 0 3rem;
+  }
+
+  /* About stats */
+  .about__container {
+    max-width: 1000px;
+  }
+
+  .stat__number {
+    font-size: 2.75rem;
+  }
+
+  /* Contact */
+  .contact__form,
+  .contact__info {
+    font-size: 1.05rem;
+  }
+
+  /* Gallery */
+  .services__grid {
+    gap: 1.75rem;
+  }
+}
+
+/* Extra large screens (1600px+) */
+@media screen and (min-width: 1600px) {
+  .container {
+    max-width: 1600px;
+  }
+
+  .nav {
+    max-width: 1600px;
+  }
+
+  .hero__container {
+    max-width: 1600px;
+  }
+
+  .hero__title {
+    font-size: 5.5rem;
+  }
+
+  .section__title {
+    font-size: 3.25rem;
+  }
+
+  .services__grid {
+    max-width: 1600px;
+  }
+}
+
+/* ========================================= */
+/* MEDIUM SCREENS: split-screen / tablet     */
+/* Between mobile (768px) and desktop (1200px) */
+/* ========================================= */
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+  .hero__container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 2rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__buttons {
+    justify-content: center;
+  }
+
+  .hero__image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__img {
+    max-width: 600px;
+    width: 100%;
   }
 }

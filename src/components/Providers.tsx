@@ -4,20 +4,20 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 const BASE = import.meta.env.BASE_URL
 
 const providers = [
-  { name: 'Bit Industries', logo: `${BASE}images/providers/provider-1.png`, className: '' },
-  { name: 'Arabesque', logo: `${BASE}images/providers/provider-2.png`, className: '' },
-  { name: 'Pro Tools Consult', logo: `${BASE}images/providers/provider-3.png`, className: '' },
-  { name: 'Triton', logo: `${BASE}images/providers/provider-4.png`, className: '' },
-  { name: 'VDT', logo: `${BASE}images/providers/provider-5.png`, className: 'providers__logo--smaller' },
-  { name: 'Repec', logo: `${BASE}images/providers/provider-6.png`, className: 'providers__logo--bigger' },
-  { name: 'GDC Commercial', logo: `${BASE}images/providers/provider-7.png`, className: '' },
-  { name: 'Menatwork Solution', logo: `${BASE}images/providers/provider-8.png`, className: '' },
-  { name: 'Ejot', logo: `${BASE}images/providers/provider-9.png`, className: '' },
-  { name: 'Basik Supply', logo: `${BASE}images/providers/provider-10.png`, className: '' },
-  { name: 'Eurozone Metal', logo: `${BASE}images/providers/provider-11.png`, className: 'providers__logo--smaller' },
-  { name: 'Euroart', logo: `${BASE}images/providers/provider-12.png`, className: '' },
-  { name: 'Holver', logo: `${BASE}images/providers/provider-13.png`, className: '' },
-  { name: 'Fibrotermica', logo: `${BASE}images/providers/provider-14.png`, className: '' },
+  { name: 'Bit Industries', logo: `${BASE}images/providers/provider-1.png`, className: '', nameClass: '' },
+  { name: 'Arabesque', logo: `${BASE}images/providers/provider-2.png`, className: '', nameClass: '' },
+  { name: 'Pro Tools Consult', logo: `${BASE}images/providers/provider-3.png`, className: '', nameClass: '' },
+  { name: 'Triton', logo: `${BASE}images/providers/provider-4.png`, className: '', nameClass: '' },
+  { name: 'VDT', logo: `${BASE}images/providers/provider-5.png`, className: 'providers__logo--smaller', nameClass: '' },
+  { name: 'Repec', logo: `${BASE}images/providers/provider-6.png`, className: 'providers__logo--bigger', nameClass: '' },
+  { name: 'GDC Commercial', logo: `${BASE}images/providers/provider-7.png`, className: '', nameClass: '' },
+  { name: 'Menatwork Solution', logo: `${BASE}images/providers/provider-8.png`, className: '', nameClass: 'providers__name--small' },
+  { name: 'Ejot', logo: `${BASE}images/providers/provider-9.png`, className: '', nameClass: '' },
+  { name: 'Basik Supply', logo: `${BASE}images/providers/provider-10.png`, className: '', nameClass: '' },
+  { name: 'Eurozone Metal', logo: `${BASE}images/providers/provider-11.png`, className: 'providers__logo--smaller', nameClass: '' },
+  { name: 'Euroart', logo: `${BASE}images/providers/provider-12.png`, className: '', nameClass: '' },
+  { name: 'Holver', logo: `${BASE}images/providers/provider-13.png`, className: '', nameClass: '' },
+  { name: 'Fibrotermica', logo: `${BASE}images/providers/provider-14.png`, className: '', nameClass: '' },
 ]
 
 const AUTO_SLIDE_INTERVAL = 5000
@@ -133,7 +133,7 @@ export const Providers: React.FC = () => {
                           onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0.3' }}
                         />
                       </div>
-                      <span className="providers__name">{p.name}</span>
+                      <span className={`providers__name${p.nameClass ? ` ${p.nameClass}` : ''}`}>{p.name}</span>
                     </div>
                   ))}
                 </div>

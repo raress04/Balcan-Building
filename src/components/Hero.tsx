@@ -11,10 +11,10 @@ export const Hero: React.FC<HeroProps> = ({ onCTAClick, onContactClick }) => {
       <div className="hero__container container">
         <div className="hero__content">
           <h1 className="hero__title">
-            Firma de <span className="hero__title-accent">construcții civile</span> și industriale
+            Firmă de <span className="hero__title-accent">construcții civile</span> și industriale în Constanța
           </h1>
           <p className="hero__description">
-            Calitate și profesionalism în fiecare proiect. Experiență de peste 20 ani în construcții civile și industriale.
+            Calitate și profesionalism în fiecare proiect. Experiență de peste 20 de ani în construcții civile și industriale în Constanța.
           </p>
           <div className="hero__buttons">
             <button className="button button--primary" onClick={onCTAClick}>Serviciile Noastre</button>

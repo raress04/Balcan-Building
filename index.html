@@ -4,13 +4,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Balcan Building SRL - Construcții civile și industriale, Constanța." />
+
+  <!-- Primary SEO meta tags -->
+  <title>Balcan Construct - Construcții Constanța | Civile și Industriale</title>
+  <meta name="description"
+    content="Firmă de construcții civile și industriale în Constanța. Experiență de peste 20 de ani. Renovări, termoizolații, amenajări. Contactați-ne la +40 744 381 663." />
+  <meta name="keywords"
+    content="construcții Constanța, firmă construcții Constanța, construcții civile Constanța, construcții industriale Constanța, renovări Constanța, termoizolații Constanța, amenajări Constanța" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="author" content="Balcan Construct SRL" />
+  <meta name="geo.region" content="RO-CT" />
+  <meta name="geo.placename" content="Constanța" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://balcan-construct.ro/" />
+
+  <!-- JSON-LD Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Balcan Construct SRL",
+    "description": "Firmă de construcții civile și industriale în Constanța. Experiență de peste 20 de ani.",
+    "url": "https://balcan-construct.ro",
+    "telephone": "+40744381663",
+    "email": "office@balcan-construct.ro",
+    "image": "https://balcan-construct.ro/logo.png",
+    "logo": "https://balcan-construct.ro/logo.png",
+    "priceRange": "$$",
+    "currenciesAccepted": "RON",
+    "paymentAccepted": "Cash, Bank Transfer",
+    "areaServed": {
+      "@type": "City",
+      "name": "Constanța"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Str. Ion Minulescu nr. 5",
+      "addressLocality": "Cumpăna",
+      "addressRegion": "Constanța",
+      "postalCode": "907105",
+      "addressCountry": "RO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "44.1535",
+      "longitude": "28.6103"
+    },
+    "sameAs": [
+      "https://balcan-construct.ro"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicii de construcții",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Construcții civile Constanța"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Construcții industriale Constanța"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Renovări Constanța"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Termoizolații Constanța"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Amenajări exterioare Constanța"}}
+      ]
+    }
+  }
+  </script>
+
+  <!-- SPA routing: decode redirect from 404.html -->
+  <script>
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?')
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        )
+      }
+    }(window.location))
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-  <title>Balcan Building SRL</title>
 </head>
 
 <body>
